@@ -1,7 +1,7 @@
 export type CommitmentType = {
-  start: Number;
-  end: Number;
-  title: String;
+  start: number;
+  end: number;
+  title: string;
 };
 
 export const mockCommitments: Array<CommitmentType> = [
