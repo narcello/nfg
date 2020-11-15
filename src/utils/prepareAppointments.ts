@@ -40,47 +40,60 @@ function setAppointmentColumnParams(
   appointments: Array<AppointmentCompleteType>,
 ): Array<AppointmentCompleteType> {
   for (let i = 0; i < appointments.length; i++) {
-    const BEFORE_APPOINTMENT = appointments[i - 1];
+    const PREVIUS_APPOINTMENT = appointments[i - 1];
     const CURRENT_APPOINTMENT = appointments[i];
     const NEXT_APPOINTMENT = appointments[i + 1];
-    if (
-      !!NEXT_APPOINTMENT &&
-      nextAppointmentStartsBeforeTheEndOfCurrentAppointment(
-        NEXT_APPOINTMENT,
-        CURRENT_APPOINTMENT,
-      )
-    ) {
-      NEXT_APPOINTMENT.gridColumnStart = 2;
-      NEXT_APPOINTMENT.gridColumnEnd = 3;
-      CURRENT_APPOINTMENT.gridColumnEnd = 2;
-    } else {
-      CURRENT_APPOINTMENT.gridColumnEnd = 3;
-    }
-    if (
-      !!BEFORE_APPOINTMENT &&
-      beforeAppointmentEndWhenCurrentStart(
-        BEFORE_APPOINTMENT,
-        CURRENT_APPOINTMENT,
-      )
-    ) {
-      BEFORE_APPOINTMENT.gridColumnStart = 2;
-      BEFORE_APPOINTMENT.gridColumnEnd = 3;
-      CURRENT_APPOINTMENT.gridColumnEnd = 2;
-    }
+    handleWithCurrentAndNextAppointments(CURRENT_APPOINTMENT, NEXT_APPOINTMENT);
+    handleWithCurrentAndPreviusAppointments(
+      CURRENT_APPOINTMENT,
+      PREVIUS_APPOINTMENT,
+    );
   }
   return appointments;
 }
 
-function nextAppointmentStartsBeforeTheEndOfCurrentAppointment(
+function handleWithCurrentAndNextAppointments(
+  currentAppointment: AppointmentCompleteType,
+  nextAppointment: AppointmentCompleteType,
+) {
+  if (
+    !!nextAppointment &&
+    nextAppointmentStartsBeforeCurrentEnds(nextAppointment, currentAppointment)
+  ) {
+    nextAppointment.gridColumnStart = 2;
+    nextAppointment.gridColumnEnd = 3;
+    currentAppointment.gridColumnEnd = 2;
+  } else {
+    currentAppointment.gridColumnEnd = 3;
+  }
+}
+function handleWithCurrentAndPreviusAppointments(
+  currentAppointment: AppointmentCompleteType,
+  previusAppointment: AppointmentCompleteType,
+) {
+  if (
+    !!previusAppointment &&
+    previousAppointmentEndsWhenCurrentStarts(
+      previusAppointment,
+      currentAppointment,
+    )
+  ) {
+    previusAppointment.gridColumnStart = 2;
+    previusAppointment.gridColumnEnd = 3;
+    currentAppointment.gridColumnEnd = 2;
+  }
+}
+
+function nextAppointmentStartsBeforeCurrentEnds(
   nextAppointment: AppointmentCompleteType,
   currentAppointment: AppointmentCompleteType,
 ): boolean {
   return nextAppointment.start < currentAppointment.end;
 }
 
-function beforeAppointmentEndWhenCurrentStart(
-  beforeAppointment: AppointmentCompleteType,
+function previousAppointmentEndsWhenCurrentStarts(
+  previousAppointment: AppointmentCompleteType,
   currentAppointment: AppointmentCompleteType,
 ): boolean {
-  return beforeAppointment.end === currentAppointment.start;
+  return previousAppointment.end === currentAppointment.start;
 }
