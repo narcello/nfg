@@ -1,11 +1,10 @@
 import React from 'react';
-import {CommitmentStyled, CommitmentStyledType} from './Commitment.styles';
+import {CommitmentAddonsType} from '../../types/commitment.type';
+import {CommitmentStyled} from './Commitment.styles';
 
-interface CommitmentProps extends CommitmentStyledType {
-  title: string;
-}
+type Props = CommitmentAddonsType & {title: string};
 
-function Commitment({title, ...props}: CommitmentProps) {
+function Commitment({title, ...props}: Props) {
   return <CommitmentStyled {...props}>{title}</CommitmentStyled>;
 }
 

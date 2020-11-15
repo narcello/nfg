@@ -1,10 +1,6 @@
-export type CommitmentType = {
-  start: number;
-  end: number;
-  title: string;
-};
+import {CommitmentBaseType} from './types/commitment.type';
 
-export const mockCommitments: Array<CommitmentType> = [
+export const mockCommitments: Array<CommitmentBaseType> = [
   {start: 300, end: 360, title: 'Gym'},
   {start: 330, end: 390, title: 'Call Diego'},
   {start: 180, end: 240, title: 'Don’t forget the pills'},

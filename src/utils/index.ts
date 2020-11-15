@@ -1,9 +1,4 @@
-import {InitCommitmentGridColumnWidth} from './initCommitmentGridColumnWidth';
-import {orderByAscendingOrder} from './orderByAscendingOrder';
-import {setCommitmentColumnParams} from './setCommitmentColumnParams';
+import {getGridRowPosition} from './getGridRowPosition';
+import {prepareCommitments} from './prepareCommitments';
 
-export {
-  InitCommitmentGridColumnWidth,
-  orderByAscendingOrder,
-  setCommitmentColumnParams,
-};
+export {getGridRowPosition, prepareCommitments};

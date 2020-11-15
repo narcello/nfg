@@ -1,13 +1,18 @@
 import React from 'react';
-import {Events} from '../Events';
+import {CommitmentBaseType} from '../../types/commitment.type';
+import {Commitments} from '../Commitments';
 import {HourDescription} from '../HourDescription';
 import {DayCalendarStyled} from './DayCalendar.styles';
 
-function DayCalendar() {
+type Props = {
+  commitments: Array<CommitmentBaseType>;
+};
+
+function DayCalendar({commitments}: Props) {
   return (
     <DayCalendarStyled>
       <HourDescription />
-      <Events />
+      <Commitments commitments={commitments} />
     </DayCalendarStyled>
   );
 }

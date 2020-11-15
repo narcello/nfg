@@ -1,13 +1,7 @@
 import styled from 'styled-components';
+import {CommitmentAddonsType} from '../../types/commitment.type';
 
-export type CommitmentStyledType = {
-  gridRowStart: number;
-  gridRowEnd: number;
-  gridColumnStart: number;
-  gridColumnEnd: number;
-};
-
-export const CommitmentStyled = styled.div<CommitmentStyledType>`
+export const CommitmentStyled = styled.div<CommitmentAddonsType>`
   background-color: #eaeaea;
   border-radius: 10px;
   padding: 10px 0 0 18px;
@@ -16,10 +10,3 @@ export const CommitmentStyled = styled.div<CommitmentStyledType>`
   grid-column-start: ${(props) => props.gridColumnStart};
   grid-column-end: ${(props) => props.gridColumnEnd};
 `;
-
-CommitmentStyled.defaultProps = {
-  gridRowStart: 1,
-  gridRowEnd: 2,
-  gridColumnStart: 1,
-  gridColumnEnd: 3,
-};
