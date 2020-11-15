@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {CommitmentAddonsType} from '../../types/commitment.type';
+import {AppointmentAddonsType} from '../../types/appointment.types';
 
-export const CommitmentStyled = styled.div<CommitmentAddonsType>`
+export const AppointmentStyled = styled.div<AppointmentAddonsType>`
   background-color: #eaeaea;
   border-radius: 10px;
   padding: 10px 0 0 18px;

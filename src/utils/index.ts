@@ -1,4 +1,4 @@
 import {getGridRowPosition} from './getGridRowPosition';
-import {prepareCommitments} from './prepareCommitments';
+import {prepareAppointments} from './prepareAppointments';
 
-export {getGridRowPosition, prepareCommitments};
+export {getGridRowPosition, prepareAppointments};

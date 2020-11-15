@@ -1,11 +1,11 @@
 import React from 'react';
 import {DayCalendar} from './components';
-import {mockCommitments} from './mock';
+import {mockAppointments} from './mock';
 
 function App() {
   return (
     <div className="App">
-      <DayCalendar commitments={mockCommitments} />
+      <DayCalendar appointments={mockAppointments} />
     </div>
   );
 }

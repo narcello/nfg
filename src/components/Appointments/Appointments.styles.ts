@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CommitmentsContainer = styled.div`
+export const AppointmentsContainer = styled.div`
   display: grid;
   grid-template-areas: 'a b';
   grid-template-rows: repeat(24, 30px);

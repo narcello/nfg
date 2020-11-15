@@ -1,6 +1,6 @@
-import {CommitmentBaseType} from './types/commitment.type';
+import {AppointmentBaseType} from './types/appointment.types';
 
-export const mockCommitments: Array<CommitmentBaseType> = [
+export const mockAppointments: Array<AppointmentBaseType> = [
   {start: 300, end: 360, title: 'Gym'},
   {start: 330, end: 390, title: 'Call Diego'},
   {start: 180, end: 240, title: 'Don’t forget the pills'},
