@@ -1,13 +1,13 @@
 import React from 'react';
 import {DayCalendar} from './components';
-import {mockAppointments} from './mock';
+import {AppointmentBaseType} from './types/appointment.types';
 
-function App() {
-  return (
-    <div className="App">
-      <DayCalendar appointments={mockAppointments} />
-    </div>
-  );
+type Props = {
+  appointments: Array<AppointmentBaseType>;
+};
+
+function App({appointments}: Props) {
+  return <DayCalendar appointments={appointments} />;
 }
 
 export default App;

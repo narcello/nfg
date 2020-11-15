@@ -19,8 +19,8 @@ let hourBlock = [
 const HourDescription = () => {
   return (
     <div>
-      {hourBlock.map((item) => (
-        <HourDescriptionStyled>
+      {hourBlock.map((item, index) => (
+        <HourDescriptionStyled key={index}>
           <div>
             {item.mainHour}
             <small>{item.period}</small>

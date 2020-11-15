@@ -6,9 +6,9 @@ import {
 export function prepareAppointments(
   Appointments: Array<AppointmentBaseType>,
 ): Array<AppointmentCompleteType> {
-  const appointmentsOrdered = orderByAscendingOrder(Appointments);
-  const appointmentsInitialized = appointmentsOrdered.map((appointment) =>
-    appointmentsWithGridParams(appointment),
+  const appointmentsOrdered = sortByAscendingOrder(Appointments);
+  const appointmentsInitialized = appointmentsWithGridParams(
+    appointmentsOrdered,
   );
   const appointmentsWithColumnParams = setAppointmentColumnParams(
     appointmentsInitialized,
@@ -16,19 +16,19 @@ export function prepareAppointments(
   return appointmentsWithColumnParams;
 }
 
-function appointmentsWithGridParams(
-  appointment: AppointmentBaseType,
-): AppointmentCompleteType {
-  return {
+export function appointmentsWithGridParams(
+  appointments: Array<AppointmentBaseType>,
+): Array<AppointmentCompleteType> {
+  return appointments.map((appointment) => ({
     ...appointment,
     gridColumnStart: 1,
     gridColumnEnd: 3,
     gridRowStart: 1,
     gridRowEnd: 2,
-  };
+  }));
 }
 
-function orderByAscendingOrder(
+export function sortByAscendingOrder(
   appointments: Array<AppointmentBaseType>,
 ): Array<AppointmentBaseType> {
   return appointments.sort((next, current) =>
@@ -36,7 +36,7 @@ function orderByAscendingOrder(
   );
 }
 
-function setAppointmentColumnParams(
+export function setAppointmentColumnParams(
   appointments: Array<AppointmentCompleteType>,
 ): Array<AppointmentCompleteType> {
   for (let i = 0; i < appointments.length; i++) {
@@ -52,7 +52,7 @@ function setAppointmentColumnParams(
   return appointments;
 }
 
-function handleWithCurrentAndNextAppointments(
+export function handleWithCurrentAndNextAppointments(
   currentAppointment: AppointmentCompleteType,
   nextAppointment: AppointmentCompleteType,
 ) {
@@ -67,7 +67,7 @@ function handleWithCurrentAndNextAppointments(
     currentAppointment.gridColumnEnd = 3;
   }
 }
-function handleWithCurrentAndPreviusAppointments(
+export function handleWithCurrentAndPreviusAppointments(
   currentAppointment: AppointmentCompleteType,
   previusAppointment: AppointmentCompleteType,
 ) {
@@ -84,14 +84,14 @@ function handleWithCurrentAndPreviusAppointments(
   }
 }
 
-function nextAppointmentStartsBeforeCurrentEnds(
+export function nextAppointmentStartsBeforeCurrentEnds(
   nextAppointment: AppointmentCompleteType,
   currentAppointment: AppointmentCompleteType,
 ): boolean {
   return nextAppointment.start < currentAppointment.end;
 }
 
-function previousAppointmentEndsWhenCurrentStarts(
+export function previousAppointmentEndsWhenCurrentStarts(
   previousAppointment: AppointmentCompleteType,
   currentAppointment: AppointmentCompleteType,
 ): boolean {

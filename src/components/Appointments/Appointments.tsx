@@ -12,9 +12,10 @@ function Appointments({appointments}: Props) {
   const preparedAppointments = prepareAppointments(appointments);
   return (
     <AppointmentsContainer>
-      {preparedAppointments.map((appointment) => {
+      {preparedAppointments.map((appointment, index) => {
         return (
           <Appointment
+            key={index}
             gridRowStart={getGridRowPosition(appointment.start || 0)}
             gridRowEnd={getGridRowPosition(appointment.end || 0)}
             gridColumnStart={appointment.gridColumnStart}
