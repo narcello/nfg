@@ -19,6 +19,7 @@ describe('Test prepareAppointents.ts functions', () => {
     mock: Array<AppointmentBaseType>;
     currentAppointment: AppointmentCompleteType;
     previousAppointmentWithConflict: AppointmentCompleteType;
+    previousAppointmentWithConflictSecondOption: AppointmentCompleteType;
     previousAppointmentWithoutConflict: AppointmentCompleteType;
     nextAppointmentWithConflict: AppointmentCompleteType;
     nextAppointmentWithoutConflict: AppointmentCompleteType;
@@ -41,6 +42,15 @@ describe('Test prepareAppointents.ts functions', () => {
       gridRowStart: 1,
       gridRowEnd: 2,
       gridColumnStart: 1,
+      gridColumnEnd: 3,
+    },
+    previousAppointmentWithConflictSecondOption: {
+      start: 150,
+      end: 180,
+      title: 'Previous appointment with conflict',
+      gridRowStart: 1,
+      gridRowEnd: 2,
+      gridColumnStart: 2,
       gridColumnEnd: 3,
     },
     previousAppointmentWithoutConflict: {
@@ -75,6 +85,9 @@ describe('Test prepareAppointents.ts functions', () => {
   let currentAppointment = {...initialState.currentAppointment};
   let previousAppointmentWithConflict = {
     ...initialState.previousAppointmentWithConflict,
+  };
+  let previousAppointmentWithConflictSecondOption = {
+    ...initialState.previousAppointmentWithConflictSecondOption,
   };
   let previousAppointmentWithoutConflict = {
     ...initialState.previousAppointmentWithoutConflict,
@@ -155,6 +168,9 @@ describe('Test prepareAppointents.ts functions', () => {
         start: 30,
         title: 'Meeting with the CTO',
       },
+
+      {start: 600, end: 630, title: 'Play soccer'},
+      {start: 540, end: 600, title: 'Meeting with Marcello'},
     ];
     expect(appointmentsWithGridParams(mock)).toMatchObject(expectedResult);
   });
@@ -190,6 +206,16 @@ describe('Test prepareAppointents.ts functions', () => {
         end: 420,
         start: 390,
         title: 'Meeting with Alejandro',
+      },
+      {
+        start: 540,
+        end: 600,
+        title: 'Meeting with Marcello',
+      },
+      {
+        start: 600,
+        end: 630,
+        title: 'Play soccer',
       },
     ];
     expect(sortByAscendingOrder(mock)).toMatchObject(expectedResult);
@@ -251,10 +277,21 @@ describe('Test prepareAppointents.ts functions', () => {
       currentAppointment,
       previousAppointmentWithConflict,
     );
+    expect(currentAppointment.gridColumnStart).toBe(2);
+    expect(currentAppointment.gridColumnEnd).toBe(3);
+    expect(previousAppointmentWithConflict.gridColumnStart).toBe(1);
+    expect(previousAppointmentWithConflict.gridColumnEnd).toBe(2);
+  });
+
+  test('Current and previous conflict appointments handled by handleWithCurrentAndPreviusAppointments 2', () => {
+    handleWithCurrentAndPreviusAppointments(
+      currentAppointment,
+      previousAppointmentWithConflictSecondOption,
+    );
     expect(currentAppointment.gridColumnStart).toBe(1);
     expect(currentAppointment.gridColumnEnd).toBe(2);
-    expect(previousAppointmentWithConflict.gridColumnStart).toBe(2);
-    expect(previousAppointmentWithConflict.gridColumnEnd).toBe(3);
+    expect(previousAppointmentWithConflictSecondOption.gridColumnStart).toBe(2);
+    expect(previousAppointmentWithConflictSecondOption.gridColumnEnd).toBe(3);
   });
 
   test('Current and previous NON conflict appointments handled by handleWithCurrentAndPreviusAppointments', () => {
@@ -359,6 +396,24 @@ describe('Test prepareAppointents.ts functions', () => {
         gridRowStart: 1,
         start: 390,
         title: 'Meeting with Alejandro',
+      },
+      {
+        end: 600,
+        gridColumnEnd: 2,
+        gridColumnStart: 1,
+        gridRowEnd: 2,
+        gridRowStart: 1,
+        start: 540,
+        title: 'Meeting with Marcello',
+      },
+      {
+        end: 630,
+        gridColumnEnd: 3,
+        gridColumnStart: 2,
+        gridRowEnd: 2,
+        gridRowStart: 1,
+        start: 600,
+        title: 'Play soccer',
       },
     ];
     expect(prepareAppointments(mock)).toMatchObject(expectedResult);
