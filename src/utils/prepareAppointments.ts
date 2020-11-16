@@ -78,9 +78,9 @@ export function handleWithCurrentAndPreviusAppointments(
       currentAppointment,
     )
   ) {
-    previusAppointment.gridColumnStart = 2;
-    previusAppointment.gridColumnEnd = 3;
-    currentAppointment.gridColumnEnd = 2;
+    currentAppointment.gridColumnStart = 3 - previusAppointment.gridColumnStart;
+    currentAppointment.gridColumnEnd = currentAppointment.gridColumnStart + 1;
+    previusAppointment.gridColumnEnd = previusAppointment.gridColumnStart + 1;
   }
 }
 
