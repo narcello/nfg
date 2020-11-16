@@ -9,7 +9,7 @@ import {
   sortByAscendingOrder,
   setAppointmentColumnParams,
   handleWithCurrentAndNextAppointments,
-  handleWithCurrentAndPreviusAppointments,
+  handleWithCurrentAndPreviousAppointments,
   nextAppointmentStartsBeforeCurrentEnds,
   previousAppointmentEndsWhenCurrentStarts,
 } from '../prepareAppointments';
@@ -272,8 +272,8 @@ describe('Test prepareAppointents.ts functions', () => {
     expect(nextAppointmentWithoutConflict.gridColumnEnd).toBe(3);
   });
 
-  test('Current and previous conflict appointments handled by handleWithCurrentAndPreviusAppointments', () => {
-    handleWithCurrentAndPreviusAppointments(
+  test('Current and previous conflict appointments handled by handleWithCurrentAndPreviousAppointments', () => {
+    handleWithCurrentAndPreviousAppointments(
       currentAppointment,
       previousAppointmentWithConflict,
     );
@@ -283,8 +283,8 @@ describe('Test prepareAppointents.ts functions', () => {
     expect(previousAppointmentWithConflict.gridColumnEnd).toBe(2);
   });
 
-  test('Current and previous conflict appointments handled by handleWithCurrentAndPreviusAppointments 2', () => {
-    handleWithCurrentAndPreviusAppointments(
+  test('Current and previous conflict appointments handled by handleWithCurrentAndPreviousAppointments 2', () => {
+    handleWithCurrentAndPreviousAppointments(
       currentAppointment,
       previousAppointmentWithConflictSecondOption,
     );
@@ -294,8 +294,8 @@ describe('Test prepareAppointents.ts functions', () => {
     expect(previousAppointmentWithConflictSecondOption.gridColumnEnd).toBe(3);
   });
 
-  test('Current and previous NON conflict appointments handled by handleWithCurrentAndPreviusAppointments', () => {
-    handleWithCurrentAndPreviusAppointments(
+  test('Current and previous NON conflict appointments handled by handleWithCurrentAndPreviousAppointments', () => {
+    handleWithCurrentAndPreviousAppointments(
       currentAppointment,
       previousAppointmentWithoutConflict,
     );

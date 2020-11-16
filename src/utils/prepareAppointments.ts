@@ -40,13 +40,13 @@ export function setAppointmentColumnParams(
   appointments: Array<AppointmentCompleteType>,
 ): Array<AppointmentCompleteType> {
   for (let i = 0; i < appointments.length; i++) {
-    const PREVIUS_APPOINTMENT = appointments[i - 1];
+    const PREVIOUS_APPOINTMENT = appointments[i - 1];
     const CURRENT_APPOINTMENT = appointments[i];
     const NEXT_APPOINTMENT = appointments[i + 1];
     handleWithCurrentAndNextAppointments(CURRENT_APPOINTMENT, NEXT_APPOINTMENT);
-    handleWithCurrentAndPreviusAppointments(
+    handleWithCurrentAndPreviousAppointments(
       CURRENT_APPOINTMENT,
-      PREVIUS_APPOINTMENT,
+      PREVIOUS_APPOINTMENT,
     );
   }
   return appointments;
@@ -67,20 +67,21 @@ export function handleWithCurrentAndNextAppointments(
     currentAppointment.gridColumnEnd = 3;
   }
 }
-export function handleWithCurrentAndPreviusAppointments(
+export function handleWithCurrentAndPreviousAppointments(
   currentAppointment: AppointmentCompleteType,
-  previusAppointment: AppointmentCompleteType,
+  previousAppointment: AppointmentCompleteType,
 ) {
   if (
-    !!previusAppointment &&
+    !!previousAppointment &&
     previousAppointmentEndsWhenCurrentStarts(
-      previusAppointment,
+      previousAppointment,
       currentAppointment,
     )
   ) {
-    currentAppointment.gridColumnStart = 3 - previusAppointment.gridColumnStart;
+    currentAppointment.gridColumnStart =
+      3 - previousAppointment.gridColumnStart;
     currentAppointment.gridColumnEnd = currentAppointment.gridColumnStart + 1;
-    previusAppointment.gridColumnEnd = previusAppointment.gridColumnStart + 1;
+    previousAppointment.gridColumnEnd = previousAppointment.gridColumnStart + 1;
   }
 }
 
