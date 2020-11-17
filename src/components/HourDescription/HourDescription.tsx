@@ -1,5 +1,8 @@
 import React from 'react';
-import {HourDescriptionStyled} from './HourDescription.styles';
+import {
+  ContainerHourDescription,
+  HourDescriptionStyled,
+} from './HourDescription.styles';
 
 let hourBlock = [
   {mainHour: '08:00', halfHour: '08:30', period: 'am'},
@@ -18,17 +21,17 @@ let hourBlock = [
 
 const HourDescription = () => {
   return (
-    <div>
+    <ContainerHourDescription>
       {hourBlock.map((item, index) => (
         <HourDescriptionStyled key={index}>
           <div>
             {item.mainHour}
             <small>{item.period}</small>
           </div>
-          <small>{item.halfHour}</small>
+          <small className="second-time">{item.halfHour}</small>
         </HourDescriptionStyled>
       ))}
-    </div>
+    </ContainerHourDescription>
   );
 };
 

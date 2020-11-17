@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const ContainerHourDescription = styled.div`
+  display: grid;
+  grid-gap: 2px;
+`;
+
 const HourDescriptionStyled = styled.div`
   display: grid;
   height: 60px;
@@ -8,8 +13,7 @@ const HourDescriptionStyled = styled.div`
   font-size: 16px;
   line-height: 18.75px;
   margin-bottom: 1px;
-  border: 1px solid transparent;
-  margin-top: -2px;
+  margin-top: -5px;
   will-change: transform;
   cursor: pointer;
   transition: 0.3s ease transform;
