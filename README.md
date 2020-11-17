@@ -16,7 +16,7 @@ yarn test
 
 ### What miss
 
-- The visual grid of Day Calendar
+- ~The visual grid of Day Calendar~ :rocket: [feat: add visual grid lines on calendar](https://github.com/narcello/nfg/commit/391363eb10d5198bd8956b6a1b68638484da2469)
 - Css Responsive
 
 ### What would be nice
