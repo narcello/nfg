@@ -15,7 +15,7 @@ function Appointments({appointments}: Props) {
       {preparedAppointments.map((appointment, index) => {
         return (
           <Appointment
-            key={index}
+            key={`appointment-${index}`}
             gridRowStart={getGridRowPosition(appointment.start)}
             gridRowEnd={getGridRowPosition(appointment.end)}
             gridColumnStart={appointment.gridColumnStart}

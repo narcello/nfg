@@ -23,7 +23,7 @@ const HourDescription = () => {
   return (
     <ContainerHourDescription>
       {hourBlock.map((item, index) => (
-        <HourDescriptionStyled key={index}>
+        <HourDescriptionStyled key={`hourDescription-${index}`}>
           <div>
             {item.mainHour}
             <small>{item.period}</small>
