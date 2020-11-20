@@ -4,15 +4,30 @@ import {
   AppointmentCompleteType,
 } from '../../types/appointment.types';
 import {
-  prepareAppointments,
   appointmentsWithGridParams,
-  sortByAscendingOrder,
-  setAppointmentColumnParams,
+  getGridRowPosition,
   handleWithCurrentAndNextAppointments,
   handleWithCurrentAndPreviousAppointments,
   nextAppointmentStartsBeforeCurrentEnds,
+  prepareAppointments,
   previousAppointmentEndsWhenCurrentStarts,
-} from '../prepareAppointments';
+  setAppointmentColumnParams,
+  sortByAscendingOrder,
+} from './utils';
+
+describe('Test getGridRowPosition', () => {
+  test('With 0 row position would be 1', () => {
+    expect(getGridRowPosition(0)).toBe(1);
+  });
+
+  test('With 30 row position would be 2', () => {
+    expect(getGridRowPosition(30)).toBe(2);
+  });
+
+  test('With 300 row position would be 2', () => {
+    expect(getGridRowPosition(300)).not.toBe(10);
+  });
+});
 
 describe('Test prepareAppointents.ts functions', () => {
   type InitialState = {

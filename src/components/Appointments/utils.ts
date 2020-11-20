@@ -1,7 +1,11 @@
 import {
   AppointmentBaseType,
   AppointmentCompleteType,
-} from '../types/appointment.types';
+} from '../../types/appointment.types';
+
+export function getGridRowPosition(param: number): number {
+  return param / 30 + 1;
+}
 
 export function prepareAppointments(
   Appointments: Array<AppointmentBaseType>,

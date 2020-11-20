@@ -1,8 +1,8 @@
 import React from 'react';
 import {AppointmentBaseType} from '../../types/appointment.types';
-import {getGridRowPosition, prepareAppointments} from '../../utils';
 import {Appointment} from '../Appointment';
 import {AppointmentsContainer} from './Appointments.styles';
+import {getGridRowPosition, prepareAppointments} from './utils';
 
 type Props = {
   appointments: Array<AppointmentBaseType>;
@@ -16,8 +16,8 @@ function Appointments({appointments}: Props) {
         return (
           <Appointment
             key={index}
-            gridRowStart={getGridRowPosition(appointment.start || 0)}
-            gridRowEnd={getGridRowPosition(appointment.end || 0)}
+            gridRowStart={getGridRowPosition(appointment.start)}
+            gridRowEnd={getGridRowPosition(appointment.end)}
             gridColumnStart={appointment.gridColumnStart}
             gridColumnEnd={appointment.gridColumnEnd}
             title={appointment.title}
